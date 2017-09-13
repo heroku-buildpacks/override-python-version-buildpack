@@ -18,12 +18,11 @@ EOF
 
 testCompileWithPythonVersionOverride()
 {
-  version_expected = "python-3.6.2"
-  echo "$version_expected" > ${ENV_DIR}/PYTHON_VERSION_OVERRIDE
+  echo "python-3.6.2" > ${ENV_DIR}/PYTHON_VERSION_OVERRIDE
   capture ${BUILDPACK_HOME}/bin/compile ${BUILD_DIR} ${CACHE_DIR} ${ENV_DIR}
 
   assertEquals 0 ${rtrn}
   assertEquals "" "`cat ${STD_ERR}`"
-  assertEquals "Checking for PYTHON_VERSION_OVERRIDE\nOverriding Python version to $version_expected" "`cat ${STD_OUT}`"
-  assertEquals "$version_expected" "`cat ${BUILD_DIR}/runtime.txt`"
+  assertEquals "Checking for PYTHON_VERSION_OVERRIDE\nOverriding Python version to python-3.6.2" "`cat ${STD_OUT}`"
+  assertEquals "python-3.6.2" "`cat ${BUILD_DIR}/runtime.txt`"
 }
