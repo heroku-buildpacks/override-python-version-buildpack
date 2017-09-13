@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 . ${BUILDPACK_TEST_RUNNER_HOME}/lib/test_utils.sh
 
@@ -8,7 +8,12 @@ testCompile()
   capture ${BUILDPACK_HOME}/bin/compile ${BUILD_DIR} ${CACHE_DIR} ${ENV_DIR}
   assertEquals 0 ${rtrn}
   assertEquals "" "`cat ${STD_ERR}`"
-  assertEquals "Checking for PYTHON_VERSION_OVERRIDE\nNo PYTHON_VERSION_OVERRIDE found" "`cat ${STD_OUT}`"
+  expected_output=$(cat <<EOF
+Checking for PYTHON_VERSION_OVERRIDE
+No PYTHON_VERSION_OVERRIDE found
+EOF
+)
+    assertEquals "$expected_output" "`cat ${STD_OUT}`"
 }
 
 testCompileWithPythonVersionOverride()
