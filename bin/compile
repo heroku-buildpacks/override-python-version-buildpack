@@ -19,3 +19,4 @@ if [ "$PYTHON_VERSION_OVERRIDE" = "" ]; then
 fi
 echo "Overriding Python version to $PYTHON_VERSION_OVERRIDE"
 echo "$PYTHON_VERSION_OVERRIDE" > $1/runtime.txt
+exit 0
