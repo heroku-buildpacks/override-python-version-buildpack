@@ -23,6 +23,11 @@ testCompileWithPythonVersionOverride()
 
   assertEquals 0 ${rtrn}
   assertEquals "" "`cat ${STD_ERR}`"
-  assertEquals "Checking for PYTHON_VERSION_OVERRIDE\nOverriding Python version to python-3.6.2" "`cat ${STD_OUT}`"
+  expected_output=$(cat <<EOF
+Checking for PYTHON_VERSION_OVERRIDE
+Overriding Python version to python-3.6.2
+EOF
+)
+  assertEquals "$expected_output" "`cat ${STD_OUT}`"
   assertEquals "python-3.6.2" "`cat ${BUILD_DIR}/runtime.txt`"
 }
